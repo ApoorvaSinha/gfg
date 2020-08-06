@@ -1,0 +1,29 @@
+#code
+import numpy as np
+t=int(input())
+while t:
+    s=input()
+    dp = np.zeros((len(s),len(s)));  
+    m = {};  
+    for i in range(len(s)) : 
+        dp[i][i] = 1
+        m[s[i: i + 1]] = 1 
+        
+    for i in range(len(s)- 1) :  
+        if (s[i] == s[i + 1]) : 
+            dp[i][i + 1] = 1
+            m[ s[i : i + 2]] = 1 
+        else : 
+            dp[i][i + 1] = 0
+  
+    for length in range(3,len(s) + 1) :  
+        for st in range(len(s) - length + 1) : 
+            end = st + length - 1
+            if (s[st] == s[end] and dp[st + 1][end - 1]) : 
+                dp[st][end] = 1;  
+                m[s[st : end + 1]] = 1  
+  
+            else : 
+                dp[st][end] = 0 
+    print(len(m))
+    t-=1
