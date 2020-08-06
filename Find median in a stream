@@ -1,0 +1,85 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+import java.util.Collections; 
+import java.util.PriorityQueue; 
+  
+public class MedianMaintain 
+{ 
+      
+    public static void printMedian(int[] a) 
+    { 
+          
+        double med = a[0]; 
+          
+        PriorityQueue<Integer> smaller = new PriorityQueue<> 
+        (Collections.reverseOrder()); 
+          
+        PriorityQueue<Integer> greater = new PriorityQueue<>(); 
+          
+        smaller.add(a[0]); 
+        int value1=(int) med;
+        System.out.println(value1); 
+          
+        for(int i = 1; i < a.length; i++) 
+        { 
+              
+            int x = a[i]; 
+             
+            if(smaller.size() > greater.size()) 
+            { 
+                if(x < med) 
+                { 
+                    greater.add(smaller.remove()); 
+                    smaller.add(x); 
+                } 
+                else
+                    greater.add(x); 
+                med = (double)(smaller.peek() + greater.peek())/2; 
+            } 
+
+            else if(smaller.size() == greater.size()) 
+            { 
+                if(x < med) 
+                { 
+                    smaller.add(x); 
+                    med = (double)smaller.peek(); 
+                } 
+                else
+                { 
+                    greater.add(x); 
+                    med = (double)greater.peek(); 
+                } 
+            } 
+ 
+            else
+            { 
+                if(x > med) 
+                { 
+                    smaller.add(greater.remove()); 
+                    greater.add(x); 
+                } 
+                else
+                    smaller.add(x); 
+                med = (double)(smaller.peek() + greater.peek())/2; 
+                  
+            } 
+            int value = (int) med;
+            System.out.println(value); 
+        } 
+    }
+        public static void main (String[] args) {
+	    Scanner s=new Scanner(System.in);
+	    int t=s.nextInt();
+	    int[] arr= new int[t];
+	    for(int i=0;i<t;i++){
+	        arr[i]=s.nextInt();
+	        
+	    }
+	    printMedian(arr);
+		//code
+	}
+    } 
