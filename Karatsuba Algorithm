@@ -1,0 +1,8 @@
+#code
+t=int(input())
+while t:
+    lst=list(input().strip().split())
+    a=int(lst[0],2)
+    b=int(lst[1],2)
+    print(a*b)
+    t-=1
